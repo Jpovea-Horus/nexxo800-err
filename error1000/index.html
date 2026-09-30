@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Nexxo 800 | Problema de conexión con el servicio</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #111a2e;
+      --accent: #00b4d8;
+      --text: #e6edf7;
+      --muted: #8a99b5;
+      --warn: #f4a261;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #16223d 0%, var(--bg) 60%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+    }
+    .card {
+      max-width: 560px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .code {
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--warn);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    h1 { font-size: 22px; margin: 16px 0 12px; }
+    p { color: var(--muted); line-height: 1.6; }
+    .status { margin: 24px 0; font-size: 14px; color: var(--muted); }
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--warn);
+      display: inline-block;
+      margin-right: 8px;
+      vertical-align: middle;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(1.4); }
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #041018;
+      font-weight: 700;
+      font-size: 15px;
+      border: 0;
+      cursor: pointer;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+    .cf-box {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: left;
+      opacity: .7;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">Horus Automation - Nexxo 800</div>
+    <div class="code">1000</div>
+    <h1>No pudimos conectar con el servicio</h1>
+    <p>Hay un problema temporal de configuración o de resolución de dominio entre nuestra red y el servidor.</p>
+    <p>--------------------------------</p>
+    <p>Si el error persiste, por favor contacta al soporte técnico.</p>
+    <div class="status"><span class="pulse"></span>Reintentando automáticamente en <b id="t">60</b>s</div>
+    <button class="btn" type="button" onclick="location.reload()">Reintentar ahora</button>
+    <div class="cf-box">::CLOUDFLARE_ERROR_1000S_BOX::</div>
+  </main>
+  <script>
+    (function () {
+      var s = 60;
+      var el = document.getElementById('t');
+      setInterval(function () {
+        s--;
+        el.textContent = s;
+        if (s <= 0) location.reload();
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
