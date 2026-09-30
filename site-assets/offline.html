@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Nexxo 800 | Sin conexión</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #111a2e;
+      --accent: #00b4d8;
+      --text: #e6edf7;
+      --muted: #8a99b5;
+      --warn: #f4a261;
+      --ok: #2ecc71;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #16223d 0%, var(--bg) 60%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+      text-align: center;
+    }
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .icon { width: 64px; height: 64px; margin: 0 auto; color: var(--accent); }
+    h1 { font-size: 22px; margin: 16px 0 12px; }
+    p { color: var(--muted); line-height: 1.6; }
+    .state { margin: 24px 0 16px; font-size: 14px; color: var(--warn); }
+    .state.on { color: var(--ok); }
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #041018;
+      font-weight: 700;
+      font-size: 15px;
+      border: 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">Nexxo 800</div>
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+      <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+      <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+      <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+      <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+      <line x1="12" y1="20" x2="12.01" y2="20"></line>
+    </svg>
+    <h1>Sin conexión a internet</h1>
+    <p>Parece que perdiste la conexión. Cuando vuelva, recargaremos la página automáticamente.</p>
+    <div id="state" class="state">Esperando conexión…</div>
+    <button class="btn" type="button" onclick="location.reload()">Reintentar</button>
+  </main>
+  <script>
+    (function () {
+      var st = document.getElementById('state');
+      window.addEventListener('online', function () {
+        st.textContent = 'Conexión restablecida. Recargando…';
+        st.classList.add('on');
+        setTimeout(function () { location.reload(); }, 800);
+      });
+    })();
+  </script>
+</body>
+</html>
